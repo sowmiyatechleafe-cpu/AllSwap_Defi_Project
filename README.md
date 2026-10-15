@@ -2,21 +2,6 @@
 
 A React + Vite frontend with a Hardhat smart-contract demo and MetaMask connection.
 
-## What was broken
-
-1. **No root `package.json`** — `npm run dev` could not start from the project root.
-2. **No `frontend/index.html`** — Vite had no HTML entry point.
-3. **Wrong import in `frontend/src/main.jsx`**
-   - Broken: `import App from ".src/App.jsx";`
-   - Fixed: `import App from "./App.jsx";`
-4. **Vite root was wrong** — the source is inside `frontend/`, but Vite was configured to look in the repository root.
-5. **`WalletProvider` was not mounted** — the wallet components used `useWallet()` but the application did not provide the context.
-6. **Swap button was only UI** — it did not call the smart contract.
-7. **Contract addresses were hard-coded** — the frontend could not be safely reused after a fresh deployment.
-8. **The ZIP contained `node_modules`** — these were platform-specific and can cause native-module errors when copied between Windows/Linux/macOS. The fixed ZIP intentionally does not include `node_modules`.
-9. **Hardhat Sepolia config depended on missing config variables during config loading** — the fixed config only adds Sepolia when both environment variables are present.
-10. **The local swap contract had no liquidity** — the deployment module now transfers demo PILOT and USDC into the swap contract.
-
 ## Run the frontend
 
 From the `my-defi` root:
